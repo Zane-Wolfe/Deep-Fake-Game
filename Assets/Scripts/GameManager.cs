@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public static List<Slide> slides;
-    private int slideIndex = 0;
+    private static int slideIndex = 0;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -33,5 +35,10 @@ public class GameManager : MonoBehaviour
     {
         slideIndex++;
 
+    }
+
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("Main");
     }
 }
