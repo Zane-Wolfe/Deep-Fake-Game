@@ -51,8 +51,4 @@ public class GameManager : MonoBehaviour
         currentSlideIndex++;
     }
 
-    public void LoadMainScene()
-    {
-        SceneManager.LoadScene("Main");
-    }
 }
