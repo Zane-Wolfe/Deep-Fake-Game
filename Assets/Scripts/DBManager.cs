@@ -29,7 +29,7 @@ public class DatabaseManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(Application.persistentDataPath);
+        Debug.Log(Application.dataPath);
         using var command = connection.CreateCommand();
         command.CommandText = "CREATE TABLE IF NOT EXISTS Users (id SERIAL PRIMARY KEY, username TEXT, password TEXT, score INT);";
         command.ExecuteNonQuery();
