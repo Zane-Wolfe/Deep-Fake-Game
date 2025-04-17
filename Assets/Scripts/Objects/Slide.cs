@@ -1,14 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
-public class Slide : MonoBehaviour
+public class Slide
 {
-    [SerializeField] private List<Image> images = new();
-    [SerializeField] private int correctIndex;
-    [SerializeField] private Image correctImage;
-    [SerializeField] private string question;
-    [SerializeField] private string wrongAnswerMessage;
-    
+    public Slide(Image image, string question,
+        string answer1, string answer2, string answer3, string answer4, int correctAnswer,
+        string correctAnswerText, string wrongAnswerText)
+    {
+        Image = image;
+        Question = question;
+        Answer1 = answer1;
+        Answer2 = answer2;
+        Answer3 = answer3;
+        Answer4 = answer4;
+        CorrectAnswer = correctAnswer;
+        CorrectAnswerText = correctAnswerText;
+        WrongAnswerText = wrongAnswerText;
+    }
+
+    public Image Image { get;}
+    public string Question { get; }
+    public string Answer1 { get; }
+    public string Answer2 { get; }
+    public string Answer3 { get; }
+    public string Answer4 { get; }
+    public int CorrectAnswer { get; }
+    public string CorrectAnswerText { get; }
+    public string WrongAnswerText { get; }
 }
