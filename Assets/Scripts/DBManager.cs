@@ -22,7 +22,7 @@ public class DatabaseManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        dbPath = "URI=file:" + Application.persistentDataPath + "/game.db";
+        dbPath = "URI=file:" + Application.dataPath + "/game.db";
         connection = new SqliteConnection(dbPath);
         connection.Open();
     }
