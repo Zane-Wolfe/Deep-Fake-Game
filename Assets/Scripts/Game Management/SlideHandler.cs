@@ -26,27 +26,16 @@ public class SlideHandler : MonoBehaviour
         answer4Text.text = slide.Answer4;
     }
 
-    public void ChooseOption(int option)
+    public bool ChooseOption(int option)
     {
         resultPanel.gameObject.SetActive(true);
         if (currentSlide.CorrectAnswer == option)
         {
             resultText.text = currentSlide.CorrectAnswerText;
+            return true;
         }
-        else
-        {
-            resultText.text = currentSlide.WrongAnswerText;
-        }
+        resultText.text = currentSlide.WrongAnswerText;
+        return false;
     }
     
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
