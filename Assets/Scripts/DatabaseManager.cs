@@ -33,10 +33,10 @@ public class DatabaseManager : MonoBehaviour
     private void Start()
     {
         using var command = connection.CreateCommand();
-        command.CommandText = "CREATE TABLE IF NOT EXISTS Users (id SERIAL PRIMARY KEY, username TEXT, password TEXT, score INT);";
+        command.CommandText = "CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, score INT);";
         command.ExecuteNonQuery();
 
-        command.CommandText = "CREATE TABLE IF NOT EXISTS Questions (id SERIAL PRIMARY KEY, question TEXT, feedback TEXT);";
+        command.CommandText = "CREATE TABLE IF NOT EXISTS Questions (id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, feedback TEXT);";
         command.ExecuteNonQuery();
     }
 
@@ -104,9 +104,72 @@ public class DatabaseManager : MonoBehaviour
         return count > 0;
     }
 
-    public void UpdateUserScore(string username, string password, int newScore)
+    public void UpdateUserScore(int id, int newScore)
     {
+        using var command = connection.CreateCommand();
+        command.CommandText = "UPDATE Users SET score = @score WHERE id = @id;";
 
+        var scoreParam = command.CreateParameter();
+        scoreParam.ParameterName = "@score";
+        scoreParam.Value = newScore;
+        command.Parameters.Add(scoreParam);
+
+        var idParam = command.CreateParameter();
+        idParam.ParameterName = "@id";
+        idParam.Value = id;
+        command.Parameters.Add(idParam);
+
+        try
+        {
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                Debug.Log($"Score updated for user ID {id} to {newScore}.");
+            }
+            else
+            {
+                Debug.LogWarning($"No user found with ID {id}.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to update score: {ex.Message}");
+        }
+    }
+
+    public int GetUserScore(int id)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT score FROM Users WHERE id = @id;";
+
+        var idParam = command.CreateParameter();
+        idParam.ParameterName = "@id";
+        idParam.Value = id;
+        command.Parameters.Add(idParam);
+
+        var result = command.ExecuteScalar();
+        int score = Convert.ToInt32(result);
+        return score;
+    }
+
+    public int GetUserID(string username, string password)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT id FROM Users WHERE username = @username AND password = @password;";
+
+        var usernameParam = command.CreateParameter();
+        usernameParam.ParameterName = "@username";
+        usernameParam.Value = username;
+        command.Parameters.Add(usernameParam);
+
+        var passwordParam = command.CreateParameter();
+        passwordParam.ParameterName = "@password";
+        passwordParam.Value = password;
+        command.Parameters.Add(passwordParam);
+
+        var result = command.ExecuteScalar();
+        int id = Convert.ToInt32(result);
+        return id;
     }
 
 

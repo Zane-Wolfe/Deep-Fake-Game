@@ -34,6 +34,13 @@ public class LoginManager : MonoBehaviour
         
     }
 
+    public void HandleGuestLogin()
+    {
+        //send information over to Main that we are guest
+        int id = DatabaseManager.Instance.GetUserID("guest", "password1!");
+        PlayerPrefs.SetInt("UserID", id);
+        LoadMainScene();
+    }
     public void HandleLogin()
     {
         string username = usernameLoginInput.text;
@@ -47,7 +54,8 @@ public class LoginManager : MonoBehaviour
             return;
         }
 
-        //TODO: send over information to Main scene about which user is logged in (pk or username etc)
+        int userID = DatabaseManager.Instance.GetUserID(username, password);
+        PlayerPrefs.SetInt("UserID", userID);
         LoadMainScene();
     }
 
