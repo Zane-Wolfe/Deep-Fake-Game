@@ -16,6 +16,10 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_InputField usernameCreateInput;
     [SerializeField] private TMP_InputField passwordCreateInput;
     [SerializeField] private TMP_Text feedbackText;
+
+    [SerializeField] private TMP_InputField usernameLoginInput;
+    [SerializeField] private TMP_InputField passowordLoginInput;
+    [SerializeField] private TMP_Text feedbackLoginText;
     
     void Start()
     {
@@ -26,6 +30,23 @@ public class LoginManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void HandleLogin()
+    {
+        string username = usernameLoginInput.text;
+        string password = passowordLoginInput.text;
+
+        bool userExists = DatabaseManager.Instance.UserExists(username, password);
+        if (!userExists)
+        {
+            feedbackLoginText.text = "Incorrect information, please try again.";
+            feedbackLoginText.color = Color.yellow;
+            return;
+        }
+
+        //TODO: send over information to Main scene about which user is logged in (pk or username etc)
+        LoadMainScene();
     }
 
     public void HandleCreateAccount()
@@ -78,8 +99,6 @@ public class LoginManager : MonoBehaviour
 
         if (!Regex.IsMatch(password, @"\d"))
             return false;
-
-
 
         if (!Regex.IsMatch(password, @"[\W_]"))
             return false;
