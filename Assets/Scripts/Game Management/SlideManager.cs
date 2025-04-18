@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SlideManager : MonoBehaviour
 {
     private SlideHandler slideHandler;
-    private List<Slide> slides;
+    private List<Slide> slides = new List<Slide>();
     private int currentSlideIndex = 0;
     
     [SerializeField] private TMP_Text scoreText;
@@ -28,6 +28,7 @@ public class SlideManager : MonoBehaviour
     private void LoadSlides()
     {
         // Fetch slides from database here and populate slides list
+        slides = DatabaseManager.Instance.GetAllSlides();
     }
     
     public void ChooseOption(int option)
@@ -44,13 +45,16 @@ public class SlideManager : MonoBehaviour
     
     public void NextSlide()
     {
-        Slide slide = slides[currentSlideIndex];
-        slideHandler.NextSlide(slide);
-        currentSlideIndex++;
         // Slides have finished, end game
+        // Debug.Log(currentSlideIndex);
+        // Debug.Log(slides.Count);
         if (currentSlideIndex == slides.Count)
         {
             SceneManager.LoadScene("End");
+            return;
         }
+        Slide slide = slides[currentSlideIndex];
+        slideHandler.NextSlide(slide);
+        currentSlideIndex++;
     }
 }

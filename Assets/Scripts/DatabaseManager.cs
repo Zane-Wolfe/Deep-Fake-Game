@@ -172,6 +172,13 @@ public class DatabaseManager : MonoBehaviour
         return id;
     }
 
+    public List<Slide> GetAllSlides()
+    {
+        List<Slide> slides = new List<Slide>();
+        // Populate all slide data into slides
+        return slides;
+    }
+
 
     void OnDestroy()
     {

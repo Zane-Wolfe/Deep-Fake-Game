@@ -473,8 +473,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1811092343}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1401267979}
+        m_TargetAssemblyTypeName: SlideManager, Assembly-CSharp
         m_MethodName: NextSlide
         m_Mode: 1
         m_Arguments:
@@ -874,8 +874,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1811092343}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1401267979}
+        m_TargetAssemblyTypeName: SlideManager, Assembly-CSharp
         m_MethodName: ChooseOption
         m_Mode: 3
         m_Arguments:
@@ -1360,8 +1360,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1811092343}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1401267979}
+        m_TargetAssemblyTypeName: SlideManager, Assembly-CSharp
         m_MethodName: ChooseOption
         m_Mode: 3
         m_Arguments:
@@ -1813,8 +1813,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1811092343}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1401267979}
+        m_TargetAssemblyTypeName: SlideManager, Assembly-CSharp
         m_MethodName: ChooseOption
         m_Mode: 3
         m_Arguments:
@@ -1946,8 +1946,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1811092343}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1401267979}
+        m_TargetAssemblyTypeName: SlideManager, Assembly-CSharp
         m_MethodName: ChooseOption
         m_Mode: 3
         m_Arguments:
