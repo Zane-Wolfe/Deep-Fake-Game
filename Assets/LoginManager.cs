@@ -20,6 +20,8 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_InputField usernameLoginInput;
     [SerializeField] private TMP_InputField passowordLoginInput;
     [SerializeField] private TMP_Text feedbackLoginText;
+
+    [SerializeField] private TMP_Text leaderboard;
     
     void Start()
     {
@@ -74,6 +76,14 @@ public class LoginManager : MonoBehaviour
         loginPanel.SetActive(true);
     }
 
+    public void GotoWelcomePanel()
+    {
+        leaderboardPanel.SetActive(false);
+        loginPanel.SetActive(false);
+        createPanel.SetActive(false);
+        welcomePanel.SetActive(true);
+    }
+
     public void GotoCreatePanel()
     {
         welcomePanel.SetActive(false);
@@ -84,6 +94,15 @@ public class LoginManager : MonoBehaviour
     {
         welcomePanel.SetActive(false);
         leaderboardPanel.SetActive(true);
+        leaderboard.text = " ";
+
+        var scores = DatabaseManager.Instance.GetTopScores();
+
+        for (int i = 0; i < scores.Count; i++)
+        {
+            leaderboard.text += $"{i + 1}. {scores[i].Username} — {scores[i].Score} points\n";
+        }
+
     }
 
     public void LoadMainScene()

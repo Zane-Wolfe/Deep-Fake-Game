@@ -5,6 +5,7 @@ using Mono.Data.Sqlite;
 using UnityEngine;
 using UnityEditor.MemoryProfiler;
 using System;
+using UnityEngine.SocialPlatforms;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -37,6 +38,24 @@ public class DatabaseManager : MonoBehaviour
 
         command.CommandText = "CREATE TABLE IF NOT EXISTS Questions (id SERIAL PRIMARY KEY, question TEXT, feedback TEXT);";
         command.ExecuteNonQuery();
+    }
+
+    public List<UserScore> GetTopScores(int limit = 10)
+    {
+        List<UserScore> leaderboard = new List<UserScore>();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = $"SELECT username, score FROM Users ORDER BY score DESC LIMIT {limit};";
+
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            string username = reader.GetString(0);
+            int score = reader.GetInt32(1);
+            leaderboard.Add(new UserScore(username, score));
+        }
+
+        return leaderboard;
     }
 
     public void CreateUser(string username, string password)
@@ -98,5 +117,17 @@ public class DatabaseManager : MonoBehaviour
 
 
     
+}
+
+public class UserScore
+{
+    public string Username;
+    public int Score;
+
+    public UserScore(string username, int score)
+    {
+        Username = username;
+        Score = score;
+    }
 }
 
