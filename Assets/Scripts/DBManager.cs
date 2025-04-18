@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using Mono.Data.Sqlite; 
 using UnityEngine;
+using UnityEditor.MemoryProfiler;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -29,7 +30,6 @@ public class DatabaseManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(Application.dataPath);
         using var command = connection.CreateCommand();
         command.CommandText = "CREATE TABLE IF NOT EXISTS Users (id SERIAL PRIMARY KEY, username TEXT, password TEXT, score INT);";
         command.ExecuteNonQuery();
@@ -38,12 +38,33 @@ public class DatabaseManager : MonoBehaviour
         command.ExecuteNonQuery();
     }
 
-    public static void AddUser(string username, string password)
+    public  void CreateUser(string username, string password)
     {
+        using var command = connection.CreateCommand();
+        command.CommandText = "INSERT INTO Users (username, password, score) VALUES (@username, @password, 0);";
 
+        var usernameParam = command.CreateParameter();
+        usernameParam.ParameterName = "@username";
+        usernameParam.Value = username;
+        command.Parameters.Add(usernameParam);
+
+        var passwordParam = command.CreateParameter();
+        passwordParam.ParameterName = "@password";
+        passwordParam.Value = password;
+        command.Parameters.Add(passwordParam);
+
+        try
+        {
+            command.ExecuteNonQuery();
+            Debug.Log("User created successfully.");
+        }
+        catch (SqliteException ex)
+        {
+            Debug.LogError($"SQLite error: {ex.Message}");
+        }
     }
 
-    public static void UpdateUserScore(string username, string password, int newScore)
+    public void UpdateUserScore(string username, string password, int newScore)
     {
 
     }
