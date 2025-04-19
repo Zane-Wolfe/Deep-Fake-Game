@@ -8,6 +8,22 @@ using System;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class QuestionData
+{
+    public string question;
+    public string correctAnswer;
+    public string wrongAnswer;
+    public string[] answers;
+    public int correctChoice;
+}
+
+[System.Serializable]
+public class QuestionList
+{
+    public QuestionData[] questions;
+}
+
 public class DatabaseManager : MonoBehaviour
 {
     public static DatabaseManager Instance { get; private set; }
@@ -29,6 +45,8 @@ public class DatabaseManager : MonoBehaviour
         dbPath = "URI=file:" + Application.dataPath + "/game.db";
         connection = new SqliteConnection(dbPath);
         connection.Open();
+
+        InsertQuestionsFromJSON();
     }
 
     private void Start()
@@ -37,14 +55,63 @@ public class DatabaseManager : MonoBehaviour
         command.CommandText = "CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, score INT);";
         command.ExecuteNonQuery();
 
-        command.CommandText = "CREATE TABLE IF NOT EXISTS Questions (id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, correctAnswer TEXT, wrongAnswer TEXT);";
+        command.CommandText = "CREATE TABLE IF NOT EXISTS Questions (id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, correctAnswer TEXT, wrongAnswer TEXT, correctChoice INT);";
         command.ExecuteNonQuery();
 
-        command.CommandText = "CREATE TABLE IF NOT EXISTS Answers (id INTEGER PRIMARY KEY AUTOINCREMENT, answer TEXT NOT NULL,  questionID INTEGER,  FOREIGN KEY (questionID) REFERENCES Questions(id));";
+        command.CommandText = "CREATE TABLE IF NOT EXISTS Answers (id INTEGER PRIMARY KEY AUTOINCREMENT, answer TEXT NOT NULL,  questionID INTEGER, FOREIGN KEY (questionID) REFERENCES Questions(id));";
         command.ExecuteNonQuery();
 
-        InsertQuestions();
-        InsertAnswers();
+    }
+
+    private void InsertQuestionsFromJSON()
+    {
+        // Check if any rows exist in the Questions table
+        using (var checkCommand = connection.CreateCommand())
+        {
+            checkCommand.CommandText = "SELECT COUNT(*) FROM Questions;";
+            long count = (long)checkCommand.ExecuteScalar();
+
+            if (count > 0)
+            {
+                Debug.Log("Questions already inserted. Skipping import.");
+                return;
+            }
+        }
+
+        TextAsset jsonFile = Resources.Load<TextAsset>("Questions");
+        string wrappedJson = "{\"questions\":" + jsonFile.text + "}";
+        QuestionList questionList = JsonUtility.FromJson<QuestionList>(wrappedJson);
+
+            foreach (var q in questionList.questions)
+            {
+              
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Questions (question, correctAnswer, wrongAnswer, correctChoice) VALUES (@question, @correct, @wrong, @choice);";
+                    command.Parameters.AddWithValue("@question", q.question);
+                    command.Parameters.AddWithValue("@correct", q.correctAnswer);
+                    command.Parameters.AddWithValue("@wrong", q.wrongAnswer);
+                    command.Parameters.AddWithValue("@choice", q.correctChoice);
+                    command.ExecuteNonQuery();
+
+                    
+                    command.CommandText = "SELECT last_insert_rowid();";
+                    long questionID = (long)command.ExecuteScalar();
+
+                    // Insert each of the 4 answers
+                    for (int i = 0; i < q.answers.Length; i++)
+                    {
+                        using (var answerCommand = connection.CreateCommand())
+                        {
+                            answerCommand.CommandText = "INSERT INTO Answers (answer, questionID) VALUES (@answer, @questionID);";
+                            answerCommand.Parameters.AddWithValue("@answer", q.answers[i]);
+                            answerCommand.Parameters.AddWithValue("@questionID", questionID);
+                            answerCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+       
     }
 
     public List<UserScore> GetTopScores(int limit = 10)
@@ -185,22 +252,29 @@ public class DatabaseManager : MonoBehaviour
         using var command = connection.CreateCommand();
 
         command.CommandText = @"
-        SELECT q.question, q.correctFeedback, q.wrongFeedback, q.image, q.correctChoice,
-               a1.answer, a2.answer, a3.answer, a4.answer
+        SELECT 
+        q.question, 
+        q.correctAnswer, 
+        q.wrongAnswer, 
+        q.correctChoice,
+        a1.answer AS answer1, 
+        a2.answer AS answer2, 
+        a3.answer AS answer3, 
+        a4.answer AS answer4
         FROM Questions q
-        JOIN Answers a1 ON a1.questionID = q.questionID AND a1.id = (
-            SELECT id FROM Answers WHERE questionID = q.questionID ORDER BY id LIMIT 1 OFFSET 0
+        JOIN Answers a1 ON a1.questionID = q.id AND a1.id = (
+            SELECT id FROM Answers WHERE questionID = q.id ORDER BY id LIMIT 1 OFFSET 0
         )
-        JOIN Answers a2 ON a2.questionID = q.questionID AND a2.id = (
-            SELECT id FROM Answers WHERE questionID = q.questionID ORDER BY id LIMIT 1 OFFSET 1
+        JOIN Answers a2 ON a2.questionID = q.id AND a2.id = (
+            SELECT id FROM Answers WHERE questionID = q.id ORDER BY id LIMIT 1 OFFSET 1
         )
-        JOIN Answers a3 ON a3.questionID = q.questionID AND a3.id = (
-            SELECT id FROM Answers WHERE questionID = q.questionID ORDER BY id LIMIT 1 OFFSET 2
+        JOIN Answers a3 ON a3.questionID = q.id AND a3.id = (
+            SELECT id FROM Answers WHERE questionID = q.id ORDER BY id LIMIT 1 OFFSET 2
         )
-        JOIN Answers a4 ON a4.questionID = q.questionID AND a4.id = (
-            SELECT id FROM Answers WHERE questionID = q.questionID ORDER BY id LIMIT 1 OFFSET 3
+        JOIN Answers a4 ON a4.questionID = q.id AND a4.id = (
+            SELECT id FROM Answers WHERE questionID = q.id ORDER BY id LIMIT 1 OFFSET 3
         )
-        ORDER BY q.questionID;
+        ORDER BY q.id;
         ";
 
 
@@ -211,12 +285,12 @@ public class DatabaseManager : MonoBehaviour
             string text = reader.GetString(0);
             string correctFeedback = reader.GetString(1);
             string wrongFeedback = reader.GetString(2);
-            int correctChoice = reader.GetInt32(4);
+            int correctChoice = reader.GetInt32(3);
 
-            string answerA = reader.GetString(5);
-            string answerB = reader.GetString(6);
-            string answerC = reader.GetString(7);
-            string answerD = reader.GetString(8);
+            string answerA = reader.GetString(4);
+            string answerB = reader.GetString(5);
+            string answerC = reader.GetString(6);
+            string answerD = reader.GetString(7);
 
             Sprite image = Resources.Load<Sprite>("Image" + i);
 
@@ -228,35 +302,6 @@ public class DatabaseManager : MonoBehaviour
         return slides;
     }
 
-    private void InsertQuestions()
-    {
-
-    }
-
-    private void InsertAnswers()
-    {
-
-    }
-
-    /*private Sprite SpriteFromBytes(byte[] imageBytes)
-    {
-        Texture2D texture = new Texture2D(2, 2);
-        if (texture.LoadImage(imageBytes))
-        {
-            Sprite sprite = Sprite.Create(
-                texture,
-                new Rect(0, 0, texture.width, texture.height),
-                new Vector2(0.5f, 0.5f)
-            );
-
-            return sprite;
-        }
-        else
-        {
-            Debug.LogWarning("Failed to load image.");
-            return null;
-        }
-    }*/
 
     void OnDestroy()
     {

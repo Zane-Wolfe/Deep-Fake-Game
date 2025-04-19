@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What seems off about the subject’s blinking in this video?",
+    "correctAnswer": "Unnaturally infrequent blinking",
+    "wrongAnswer": "Frequent blinking",
+    "answers": [
+      "Unnaturally infrequent blinking",
+      "They are wearing glasses",
+      "Eyes appear blue instead of brown",
+      "Blinking happens too often"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "What might suggest this video has fake facial expressions?",
+    "correctAnswer": "Facial expressions don’t match speech tone",
+    "wrongAnswer": "Too much head movement",
+    "answers": [
+      "Facial expressions don’t match speech tone",
+      "There is no blinking at all",
+      "The subject looks tired",
+      "Too much head movement"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "How can you tell the mouth movement is unnatural?",
+    "correctAnswer": "Mouth doesn’t sync with speech audio",
+    "wrongAnswer": "Lips are too red",
+    "answers": [
+      "Mouth doesn’t sync with speech audio",
+      "Too many teeth visible",
+      "Lips are too red",
+      "Speech is slightly delayed"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "What clue can indicate a forged face swap?",
+    "correctAnswer": "Jawline flickers or morphs",
+    "wrongAnswer": "Face is too symmetrical",
+    "answers": [
+      "Jawline flickers or morphs",
+      "Skin tone is clear",
+      "Face is too symmetrical",
+      "They are wearing jewelry"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "Which lighting issue suggests a deepfake?",
+    "correctAnswer": "Shadows don’t match environment",
+    "wrongAnswer": "Lighting is very bright",
+    "answers": [
+      "Shadows don’t match environment",
+      "Skin looks healthy",
+      "Lighting is very bright",
+      "Eyeglasses reflect the room"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "What artifact can give away deepfake generation?",
+    "correctAnswer": "Flickering or blur around edges of face",
+    "wrongAnswer": "Background is out of focus",
+    "answers": [
+      "Flickering or blur around edges of face",
+      "High-definition background",
+      "Perfect lighting on forehead",
+      "Background is out of focus"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "Which inconsistency may reveal a synthetic voice?",
+    "correctAnswer": "Emotionless or robotic intonation",
+    "wrongAnswer": "Voice sounds deep",
+    "answers": [
+      "Emotionless or robotic intonation",
+      "Voice sounds deep",
+      "Speaker has an accent",
+      "Sound is loud"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "Why might inconsistent eye reflections be suspicious?",
+    "correctAnswer": "They don’t match the scene lighting",
+    "wrongAnswer": "Eyes are very shiny",
+    "answers": [
+      "They don’t match the scene lighting",
+      "Eyes are very shiny",
+      "Pupils are large",
+      "Glasses look reflective"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "What’s unusual about this head movement?",
+    "correctAnswer": "Head stays too still while speaking",
+    "wrongAnswer": "It moves slightly",
+    "answers": [
+      "Head stays too still while speaking",
+      "It moves slightly",
+      "Hair moves naturally",
+      "They nod occasionally"
+    ],
+    "correctChoice": 1
+  },
+  {
+    "question": "What feature mismatch could suggest manipulation?",
+    "correctAnswer": "Skin tone changes between frames",
+    "wrongAnswer": "Wrinkles are visible",
+    "answers": [
+      "Skin tone changes between frames",
+      "Wrinkles are visible",
+      "Face has makeup",
+      "Eyes are brown"
+    ],
+    "correctChoice": 1
+  }
+]
