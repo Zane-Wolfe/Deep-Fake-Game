@@ -9,7 +9,7 @@ public class SlideHandler : MonoBehaviour
     [SerializeField] private TMP_Text answer2Text;
     [SerializeField] private TMP_Text answer3Text;
     [SerializeField] private TMP_Text answer4Text;
-    // 
+
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private Image resultPanel;
 
