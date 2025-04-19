@@ -1,8 +1,9 @@
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Slide
 {
-    public Slide(Image image, string question,
+    public Slide(Sprite image, string question,
         string answer1, string answer2, string answer3, string answer4, int correctAnswer,
         string correctAnswerText, string wrongAnswerText)
     {
@@ -17,7 +18,7 @@ public class Slide
         WrongAnswerText = wrongAnswerText;
     }
 
-    public Image Image { get;}
+    public Sprite Image { get;}
     public string Question { get; }
     public string Answer1 { get; }
     public string Answer2 { get; }
