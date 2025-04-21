@@ -9,7 +9,8 @@ public class SlideHandler : MonoBehaviour
     [SerializeField] private TMP_Text answer2Text;
     [SerializeField] private TMP_Text answer3Text;
     [SerializeField] private TMP_Text answer4Text;
-
+    [SerializeField] private Image deepFakeImage;
+    
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private Image resultPanel;
 
@@ -24,6 +25,7 @@ public class SlideHandler : MonoBehaviour
         answer2Text.text = slide.Answer2;
         answer3Text.text = slide.Answer3;
         answer4Text.text = slide.Answer4;
+        deepFakeImage.sprite = slide.Image;
     }
 
     public bool ChooseOption(int option)

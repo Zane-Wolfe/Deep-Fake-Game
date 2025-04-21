@@ -8,7 +8,7 @@ public class SlideManager : MonoBehaviour
 {
     private SlideHandler slideHandler;
     private List<Slide> slides = new List<Slide>();
-    private int currentSlideIndex = 0;
+    private int currentSlideIndex = -1;
     
     [SerializeField] private TMP_Text scoreText;
     
@@ -17,7 +17,12 @@ public class SlideManager : MonoBehaviour
         slideHandler = GetComponent<SlideHandler>();
         LoadSlides();
         // Set user score here
-
+        
+        // Start first slide
+        NextSlide();
+        
+        // Load initial score
+        scoreText.text = "Score\n" + GameManager.Instance.GetScore();   
     }
     
     void Update()
@@ -45,16 +50,17 @@ public class SlideManager : MonoBehaviour
     
     public void NextSlide()
     {
+        // currentSlideIndex starts at -1 when the game first loads
+        currentSlideIndex++;
         // Slides have finished, end game
         // Debug.Log(currentSlideIndex);
         // Debug.Log(slides.Count);
         if (currentSlideIndex == slides.Count)
         {
-            SceneManager.LoadScene("End");
+            GameManager.Instance.EndGame();
             return;
         }
         Slide slide = slides[currentSlideIndex];
         slideHandler.NextSlide(slide);
-        currentSlideIndex++;
     }
 }
