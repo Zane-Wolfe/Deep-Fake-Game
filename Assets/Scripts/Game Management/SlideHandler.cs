@@ -15,7 +15,7 @@ public class SlideHandler : MonoBehaviour
     [SerializeField] private Image resultPanel;
 
     private Slide currentSlide;
-    
+
     public void NextSlide(Slide slide)
     {
         resultPanel.gameObject.SetActive(false);
@@ -25,7 +25,9 @@ public class SlideHandler : MonoBehaviour
         answer2Text.text = slide.Answer2;
         answer3Text.text = slide.Answer3;
         answer4Text.text = slide.Answer4;
+
         deepFakeImage.sprite = slide.Image;
+        deepFakeImage.SetNativeSize();
     }
 
     public bool ChooseOption(int option)

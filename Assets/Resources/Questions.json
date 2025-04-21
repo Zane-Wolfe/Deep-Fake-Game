@@ -1,122 +1,122 @@
 [
   {
-    "question": "What seems off about the subject’s blinking in this video?",
-    "correctAnswer": "Unnaturally infrequent blinking",
-    "wrongAnswer": "Frequent blinking",
+    "question": "What is off about the subject in the image?",
+    "correctAnswer": "Yes, the subject's facial features appear blurry",
+    "wrongAnswer": "No, the subject's facial features appear blurry",
     "answers": [
-      "Unnaturally infrequent blinking",
-      "They are wearing glasses",
-      "Eyes appear blue instead of brown",
-      "Blinking happens too often"
+      "Facial features appear blurry",
+      "Eyes are too close together",
+      "Facial features are unnaturally aligned",
+      "This is a real image"
     ],
     "correctChoice": 1
   },
   {
-    "question": "What might suggest this video has fake facial expressions?",
-    "correctAnswer": "Facial expressions don’t match speech tone",
-    "wrongAnswer": "Too much head movement",
+    "question": "Is there anything irregular about this image?",
+    "correctAnswer": "Yes, the subject is missing part of a knee",
+    "wrongAnswer": "No, the subject is missing part of a knee",
     "answers": [
-      "Facial expressions don’t match speech tone",
-      "There is no blinking at all",
-      "The subject looks tired",
-      "Too much head movement"
+      "Missing part of a knee",
+      "Background seems very fake",
+      "Setting of the image is not a real place",
+      "This is a real image"
     ],
     "correctChoice": 1
   },
   {
-    "question": "How can you tell the mouth movement is unnatural?",
-    "correctAnswer": "Mouth doesn’t sync with speech audio",
-    "wrongAnswer": "Lips are too red",
+    "question": "What seems unrealistic about the subject in the image?",
+    "correctAnswer": "Yes, the glasses have no visible reflection",
+    "wrongAnswer": "No, the glasses have no visible reflection",
     "answers": [
-      "Mouth doesn’t sync with speech audio",
-      "Too many teeth visible",
-      "Lips are too red",
-      "Speech is slightly delayed"
+      "Nose is very large",
+	  "Glasses have no visible reflection",
+      "Hoodie has unclear crevices",
+      "This is a real image"
+    ],
+    "correctChoice": 2
+  },
+  {
+    "question": "What is wrong with the image?",
+    "correctAnswer": "Yes, the subject shows no blurry/illogical features",
+    "wrongAnswer": "No, the subject shows no blurry/illogical features",
+    "answers": [
+      "Eyes are blurry",
+      "Smile is nonsymmetrical",
+      "Bright background/lighting",
+      "This is a real image"
+    ],
+    "correctChoice": 4
+  },
+  {
+    "question": "What about the subject in the center of the image appears off?",
+    "correctAnswer": "Yes, the subject's face is very bright while the bystander's is not",
+    "wrongAnswer": "No, the subject's face is very bright while the bystander's is not",
+    "answers": [
+      "Town looks unrealistic and as if it were a different year",
+      "Face is very bright while the bystander's is not",
+      "Face looks like actor Tom Holland",
+      "This is a real image"
+    ],
+    "correctChoice": 2
+  },
+  {
+    "question": "What deepfake-type features does this image of Adam Sandler does this image show?",
+    "correctAnswer": "Yes, the image clearly shows all facial features and details",
+    "wrongAnswer": "No, the image clearly shows all facial features and details",
+    "answers": [
+      "Background is out of focus",
+      "Eyes are disproportionate",
+      "Hat is not on straight",
+      "This is a real image"
+    ],
+    "correctChoice": 4
+  },
+  {
+    "question": "What best shows why this landscape is unrealistic?",
+    "correctAnswer": "Yes, one of the chairs is missing a leg",
+    "wrongAnswer": "No, one of the chairs is missing a leg",
+    "answers": [
+      "One of the chairs is missing a leg",
+      "House has an unordinary number of windows",
+      "Lighting appears unnatural",
+      "This is a real image"
     ],
     "correctChoice": 1
   },
   {
-    "question": "What clue can indicate a forged face swap?",
-    "correctAnswer": "Jawline flickers or morphs",
-    "wrongAnswer": "Face is too symmetrical",
+    "question": "What best shows why this landscape is unrealistic?",
+    "correctAnswer": "Yes, there is apparent snow but no snow or frost on any window",
+    "wrongAnswer": "No, there is apparent snow but no snow or frost on any window",
     "answers": [
-      "Jawline flickers or morphs",
-      "Skin tone is clear",
-      "Face is too symmetrical",
-      "They are wearing jewelry"
+      "Structure is architecturally unsound",
+      "There is apparent snow but no snow or frost on any window",
+      "Windows depict illogical reflections",
+      "This is a real image"
     ],
-    "correctChoice": 1
+    "correctChoice": 2
   },
   {
-    "question": "Which lighting issue suggests a deepfake?",
-    "correctAnswer": "Shadows don’t match environment",
-    "wrongAnswer": "Lighting is very bright",
+    "question": "What is off about the subject in the image?",
+    "correctAnswer": "Yes, the subject's head is outlined and has nonsymmetrical features",
+    "wrongAnswer": "No, the subject's head is outlined and has nonsymmetrical features",
     "answers": [
-      "Shadows don’t match environment",
-      "Skin looks healthy",
-      "Lighting is very bright",
-      "Eyeglasses reflect the room"
+      "Subtitle at the bottom does not match the mouth",
+      "Head is outlined and has nonsymmetrical features",
+      "Fingers are disproportionate",
+      "This is a real image"
     ],
-    "correctChoice": 1
+    "correctChoice": 2
   },
   {
-    "question": "What artifact can give away deepfake generation?",
-    "correctAnswer": "Flickering or blur around edges of face",
-    "wrongAnswer": "Background is out of focus",
+    "question": "What is wrong with the image?",
+    "correctAnswer": "Yes, the reflection on the whiteboard is inconsistent",
+    "wrongAnswer": "No, the reflection on the whiteboard is inconsistent",
     "answers": [
-      "Flickering or blur around edges of face",
-      "High-definition background",
-      "Perfect lighting on forehead",
-      "Background is out of focus"
+      "Hands in the high five are not completely palm-to-palm",
+      "Reflection on the whiteboard is inconsistent",
+      "Whiteboard has unclear and/or inconsistent writing",
+      "This is a real image"
     ],
-    "correctChoice": 1
-  },
-  {
-    "question": "Which inconsistency may reveal a synthetic voice?",
-    "correctAnswer": "Emotionless or robotic intonation",
-    "wrongAnswer": "Voice sounds deep",
-    "answers": [
-      "Emotionless or robotic intonation",
-      "Voice sounds deep",
-      "Speaker has an accent",
-      "Sound is loud"
-    ],
-    "correctChoice": 1
-  },
-  {
-    "question": "Why might inconsistent eye reflections be suspicious?",
-    "correctAnswer": "They don’t match the scene lighting",
-    "wrongAnswer": "Eyes are very shiny",
-    "answers": [
-      "They don’t match the scene lighting",
-      "Eyes are very shiny",
-      "Pupils are large",
-      "Glasses look reflective"
-    ],
-    "correctChoice": 1
-  },
-  {
-    "question": "What’s unusual about this head movement?",
-    "correctAnswer": "Head stays too still while speaking",
-    "wrongAnswer": "It moves slightly",
-    "answers": [
-      "Head stays too still while speaking",
-      "It moves slightly",
-      "Hair moves naturally",
-      "They nod occasionally"
-    ],
-    "correctChoice": 1
-  },
-  {
-    "question": "What feature mismatch could suggest manipulation?",
-    "correctAnswer": "Skin tone changes between frames",
-    "wrongAnswer": "Wrinkles are visible",
-    "answers": [
-      "Skin tone changes between frames",
-      "Wrinkles are visible",
-      "Face has makeup",
-      "Eyes are brown"
-    ],
-    "correctChoice": 1
+    "correctChoice": 2
   }
 ]

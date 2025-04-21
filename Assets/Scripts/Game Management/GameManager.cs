@@ -18,13 +18,10 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
+        
         audioManager.PlayMain();
         // Load current user account
-        _userID = PlayerPrefs.GetInt("UserID", 0);
+        _userID = PlayerPrefs.GetInt("UserID");
         // Load previous user score if one exists
         _score = DatabaseManager.Instance.GetUserScore(_userID);
     }

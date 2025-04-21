@@ -305,7 +305,10 @@ public class DatabaseManager : MonoBehaviour
 
     void OnDestroy()
     {
-        connection.Close();
+        if (connection != null)
+        {
+            connection.Close();
+        }
     }
 
 
