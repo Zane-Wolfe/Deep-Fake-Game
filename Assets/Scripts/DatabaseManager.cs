@@ -8,22 +8,6 @@ using System;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class QuestionData
-{
-    public string question;
-    public string correctAnswer;
-    public string wrongAnswer;
-    public string[] answers;
-    public int correctChoice;
-}
-
-[System.Serializable]
-public class QuestionList
-{
-    public QuestionData[] questions;
-}
-
 public class DatabaseManager : MonoBehaviour
 {
     public static DatabaseManager Instance { get; private set; }
@@ -311,20 +295,7 @@ public class DatabaseManager : MonoBehaviour
             connection.Close();
         }
     }
-
-
     
 }
 
-public class UserScore
-{
-    public string Username;
-    public int Score;
-
-    public UserScore(string username, int score)
-    {
-        Username = username;
-        Score = score;
-    }
-}
 
