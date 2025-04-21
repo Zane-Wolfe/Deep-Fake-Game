@@ -70,9 +70,11 @@ public class LoginManager : MonoBehaviour
             feedbackText.color = Color.yellow;
             return;
         }
-
+        
         //add to db and change scene
         DatabaseManager.Instance.CreateUser(username, password);
+        int userID = DatabaseManager.Instance.GetUserID(username, password);
+        PlayerPrefs.SetInt("UserID", userID);
         LoadMainScene();
         
     }
@@ -108,7 +110,7 @@ public class LoginManager : MonoBehaviour
 
         for (int i = 0; i < scores.Count; i++)
         {
-            leaderboard.text += $"{i + 1}. {scores[i].Username} — {scores[i].Score} points\n";
+            leaderboard.text += $"{i + 1}. {scores[i].Username} ï¿½ {scores[i].Score} points\n";
         }
 
     }
