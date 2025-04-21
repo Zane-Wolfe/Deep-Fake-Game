@@ -46,7 +46,6 @@ public class DatabaseManager : MonoBehaviour
         connection = new SqliteConnection(dbPath);
         connection.Open();
 
-        InsertQuestionsFromJSON();
     }
 
     private void Start()
@@ -60,6 +59,8 @@ public class DatabaseManager : MonoBehaviour
 
         command.CommandText = "CREATE TABLE IF NOT EXISTS Answers (id INTEGER PRIMARY KEY AUTOINCREMENT, answer TEXT NOT NULL,  questionID INTEGER, FOREIGN KEY (questionID) REFERENCES Questions(id));";
         command.ExecuteNonQuery();
+
+        InsertQuestionsFromJSON();
 
     }
 

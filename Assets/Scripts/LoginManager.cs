@@ -22,22 +22,19 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_Text feedbackLoginText;
 
     [SerializeField] private TMP_Text leaderboard;
+
+    private readonly string guestUsername = "guest";
+    private readonly string guestPassword = "password1!";
     
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void HandleGuestLogin()
     {
+        if (!DatabaseManager.Instance.UserExists(guestUsername, guestPassword))
+        {
+            DatabaseManager.Instance.CreateUser(guestUsername, guestPassword);
+        }
+
         //send information over to Main that we are guest
-        int id = DatabaseManager.Instance.GetUserID("guest", "password1!");
+        int id = DatabaseManager.Instance.GetUserID(guestUsername, guestPassword);
         PlayerPrefs.SetInt("UserID", id);
         LoadMainScene();
     }
