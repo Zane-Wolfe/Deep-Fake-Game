@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using Mono.Data.Sqlite; 
 using UnityEngine;
 using UnityEditor.MemoryProfiler;
@@ -287,6 +286,26 @@ public class DatabaseManager : MonoBehaviour
         return slides;
     }
 
+    public void DeleteUser(string username)
+    {
+        using var command = connection.CreateCommand();
+        command.CommandText = "DELETE FROM Users WHERE username = @username;";
+
+        var usernameParam = command.CreateParameter();
+        usernameParam.ParameterName = "@username";
+        usernameParam.Value = username;
+        command.Parameters.Add(usernameParam);
+
+        try
+        {
+            int rowsAffected = command.ExecuteNonQuery();
+
+        }
+        catch (SqliteException ex)
+        {
+            Debug.LogError($"SQLite error during user deletion: {ex.Message}");
+        }
+    }
 
     void OnDestroy()
     {
@@ -294,8 +313,12 @@ public class DatabaseManager : MonoBehaviour
         {
             connection.Close();
         }
+
+        if (Instance == this)
+            Instance = null;
     }
-    
 }
+    
+
 
 
