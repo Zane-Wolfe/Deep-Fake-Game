@@ -6,7 +6,7 @@ A Unity-based game project featuring user account creation, high score tracking,
 
 ## Requirements
 
-- **Unity Editor**: Version 2021.3 or newer recommended
+- **Unity Editor**: Version 2022.3.49f1 recommended
 - **.NET Framework**: Unity-managed (no separate install required)
 - **IDE**: (Optional) Visual Studio or JetBrains Rider for code editing and debugging
 - **SQLite Support**: Included in the project via plugins or DLLs (see `Assets/Plugins/`)
