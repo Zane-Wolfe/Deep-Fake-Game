@@ -24,6 +24,11 @@ public class AudioManager : MonoBehaviour
         {
             fxSource.Play();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void PlayMain()

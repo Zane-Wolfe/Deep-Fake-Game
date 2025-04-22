@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.Sqlite; 
 using UnityEngine;
-using UnityEditor.MemoryProfiler;
 using System;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class DatabaseManager : MonoBehaviour
